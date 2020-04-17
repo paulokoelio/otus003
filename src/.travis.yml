@@ -1,0 +1,13 @@
+language: cpp
+before_script:
+- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+- sudo apt-get update -qq
+script:
+- cmake .
+- cmake --build .
+- cmake --build . --target package
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+  - curl -T ip_fiter-1.0.$TRAVIS_BUILD_NUMBER-Linux.deb -upaulokoelio:$BINTRAY_API_KEY "https://api.bintray.com/content/paulokoelio/otus01/HelloWorld/$TRAVIS_BUILD_NUMBER/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
