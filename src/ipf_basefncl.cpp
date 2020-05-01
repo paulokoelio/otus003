@@ -3,8 +3,8 @@
 #include <vector>
 #include <sstream>
 
-#include "otus03h/ipf_basefncl.h"
-#include "otus03h/ip_filter.h"
+#include "ipf_basefncl.h"
+#include "ip_filter.h"
 
 namespace ipf
 {

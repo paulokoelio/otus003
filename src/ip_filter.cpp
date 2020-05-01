@@ -6,8 +6,8 @@
 #include <sstream>
 #include <map>
 
-#include "otus03h/ip_filter.h"
-#include "otus03h/ipf_basefncl.h"
+#include "ip_filter.h"
+#include "ipf_basefncl.h"
 
 using namespace ipf;
 
