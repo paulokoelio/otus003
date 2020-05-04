@@ -1,11 +1,11 @@
 #include <cassert>
-//#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
 #include <sstream>
 #include <map>
 
+#include "version.h"
 #include "ip_filter.h"
 #include "ipf_basefncl.h"
 
@@ -143,6 +143,7 @@ int main(int argc, char const *argv[])
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
+        std::cerr << "ip_filter version " << version() << std::endl;
     }
 
     return 0;

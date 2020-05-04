@@ -1,11 +1,18 @@
 cmake_minimum_required(VERSION 3.2)
 
+set(BUILD_VER 1)
+set(BUILD_SUBVER 0)
+set(BUILD_PATCH 0)
+
 if (DEFINED ENV{TRAVIS_BUILD_NUMBER})
-    set (BUILD_VERSION $ENV{TRAVIS_BUILD_NUMBER})
-else ()
-    set (BUILD_VERSION 0)
+    set (BUILD_PATCH $ENV{TRAVIS_BUILD_NUMBER})
 endif()
 
-project(ip_filter VERSION 1.0.${BUILD_VERSION})
+project(ip_filter VERSION ${BUILD_VER}.${BUILD_SUBVER}.${BUILD_PATCH})
 
+add_subdirectory(include)
 add_subdirectory(src)
+add_subdirectory(test)
+
+enable_testing()
+add_test(testfull "test/testall")

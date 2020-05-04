@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.2)
 
-add_executable(ip_filter ip_filter.cpp ipf_basefncl.cpp 
+add_executable(ip_filter 
+                ip_filter.cpp 
+                ipf_basefncl.cpp
+                version.cpp 
                 )
 # add_executable(test_version test_version.cpp)
 
@@ -9,8 +12,9 @@ set_target_properties(ip_filter PROPERTIES
     CXX_STANDARD_REQUIRED ON
 )
 
-target_include_directories(ip_filter
-    PRIVATE ${PROJECT_SOURCE_DIR}/include
+target_include_directories(ip_filter PRIVATE 
+                            ${PROJECT_SOURCE_DIR}/include
+                            "${CMAKE_BINARY_DIR}/include"
 )
 # set_target_properties(test_version PROPERTIES
 #     COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
