@@ -4,8 +4,8 @@ before_script:
 - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
 - sudo apt-get update -qq
 - cd /usr/src/gtest
-- sudo cmake ..
-- sudo make
+- cmake ..
+- make
 - sudo cp *.a /usr/lib
 - cd ~
 script:
