@@ -8,7 +8,7 @@ before_script:
 - sudo cmake .
 - sudo make
 - sudo cp *.a /usr/lib
-- cd ~
+- cd TRAVIS_BUILD_DIR
 script:
 - cmake .
 - cmake --build .
