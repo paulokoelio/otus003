@@ -31,7 +31,7 @@ std::vector<std::string> split(const std::string &str, char d, const size_t part
 }
 
 size_t convertoip(const std::vector<std::string> &vtxt,
-                  const ipf_ipver ipver,
+                  const ipver ipver,
                   std::vector<int> &ip_bytes,
                   bool &ipnotconverted,
                   size_t &errorcode)
@@ -39,10 +39,10 @@ size_t convertoip(const std::vector<std::string> &vtxt,
     size_t bytesnumber;
     switch (ipver)
     {
-    case EN_IPF_IPV4:
+    case ipf::ipver::IPV4:
         bytesnumber = 4;
         break;
-    case EN_IPF_IPV6:
+    case ipf::ipver::IPV6:
         bytesnumber = 16;
         break;
     }
@@ -64,7 +64,9 @@ size_t convertoip(const std::vector<std::string> &vtxt,
         convertor.str("");
         convertor.clear();
         convertor << vtxt.at(i);
-        convertor >> ip_bytes.at(i);
+        convertor >> ip_bytes.at(i);    // \todo: add check of non-digit simbols in tail of text
+                                        // current conversion doesn't detect non-digits in the tail of text
+                                        // since it is standard behavior of std::stringstream object
         if ((convertor.fail()) || (ip_bytes.at(i) > 255) || (ip_bytes.at(i) < 0))
         {
             errorcode = 2; // error during conversion of string to number (0-255)
@@ -78,7 +80,7 @@ size_t convertoip(const std::vector<std::string> &vtxt,
 bool maskpassed(const std::vector<int> &mask, const std::vector<int> &ipbytes)
 {
     // \todo Add check of length of mask and adaptation of mask to size of ipbytes+1, using some rules like:
-    // empty mask = 0,-1,-1,...; mask with 0,x = 0,x,x,..x; with 1,x = 1,x,-1,-1,..;
+    // empty mask = 0,-1,-1,...; mask with 0,x = 0,x,x,..x; with 1,x = 1,x,-1,-1,..; 
     bool res = false;
     if (mask.at(0) == 1) // strict mask
     {

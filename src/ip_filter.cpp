@@ -53,7 +53,7 @@ int main(int argc, char const *argv[])
             }
             else
             {
-                convertoip(vsub, EN_IPF_IPV4, pline.ipbytes, pline.skipped, pline.errorcode);
+                convertoip(vsub, ipver::IPV4, pline.ipbytes, pline.skipped, pline.errorcode);
                 if (!pline.skipped)
                 {
                     idfromipv4 = 256 * 256 * 256 * pline.ipbytes.at(0) + 256 * 256 * pline.ipbytes.at(1) +
