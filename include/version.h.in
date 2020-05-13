@@ -1,8 +1,0 @@
-#pragma once
-
-#cmakedefine PROJECT_VERSION "@PROJECT_VERSION@"
-
-namespace ipf
-{
-const char * version();
-}
